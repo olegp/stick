@@ -1,9 +1,9 @@
 // Stick demo app. Run with `ringo -m .. examples/demo.js` with the -m option
 // pointing to the Stick parent directory.
 
-var Application = require("../lib/stick").Application,
+var Application = require("stick").Application,
     Buffer = require("common-utils/buffer").Buffer,
-    log = console.log;
+    log = console;
 
 var fs = require(global.process ? 'fs-base' : 'fs');
 
@@ -35,15 +35,15 @@ app.mount("/hello", dummyPage("hello world!"));
 app.mount("/error", function(req) {
     throw new Error("Something went wrong");
 });
-app.static(fs.directory(resolve("../docs/index.html")), "index.html"); // serve files in docs as static resources
+//app.static(fs.directory(resolve("../docs/index.html")), "index.html"); // serve files in docs as static resources
 
 // mount example apps
 app.mount("/mount", resolve("mount-route/app"));
-app.mount("/continuation", resolve("continuation/app"));
+//app.mount("/continuation", resolve("continuation/app"));
 
 // production environment, run with RINGO_ENV=production ringo demo.js
 var prod = app.env("production");
-prod.configure("gzip", "etag", "error");
+prod.configure(/*"gzip",*/ "etag", "error");
 prod.error.location = false; // disable error location and stack traces
 
 // development environment, run with RINGO_ENV=development ringo demo.js
@@ -51,8 +51,8 @@ var dev = app.env("development").configure("requestlog", "error");
 dev.requestlog.append = true;
 
 // profiler environment, run with RINGO_ENV=profiler ringo -o-1 demo.js
-var prof = app.env("profiler").configure("requestlog", "profiler", "error");
-prof.requestlog.append = true;
+var prof = app.env("profiler").configure(/*"requestlog", "profiler",*/ "error");
+//prof.requestlog.append = true;
 
 // create a password protected admin application
 var admin = new Application(dummyPage("admin zone"));
@@ -71,6 +71,6 @@ function dummyPage(text) {
     }
 }
 
-require("jsgi").run(module.id);
+require("jsgi").run(module.id, 9090);
 
 

@@ -1,9 +1,15 @@
-var {Application, helpers} = require("stick");
-var response = require("ringo/jsgi/response");
+var stick = require("stick");
+var Application = stick.Application, helpers = stick.helpers;
+
+var response = require("stick/lib/utils/response");
+
+function resolve(n) {
+	return module.resolve ? module.resolve(n) : require.resolve(n.charAt(0) != '.' ? './' + n : n)
+}
 
 var app = exports.app = Application(),
-    foo = module.resolve("foo"),
-    bar = module.resolve("bar");
+    foo = resolve("foo"),
+    bar = resolve("bar");
 
 app.configure("mount", "route");
 app.mount("/foo", foo);
