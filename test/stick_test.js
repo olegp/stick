@@ -1,5 +1,7 @@
-var {Application} = require("../lib/stick");
-var {mount,route} = require("../lib/middleware")
+var stick = require("../lib/stick");
+var Application = stick.Application;
+var middleware = require("../lib/middleware");
+var mount = middleware.mount, route = middleware.route;
 var assert = require("assert");
 
 
