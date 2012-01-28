@@ -145,6 +145,4 @@ exports.testMountAndRouteResolution = function() {
     testPath("/test/baz/123/qux", "baz/123/qux");
 };
 
-if (require.main == module) {
-    require("test").run(exports);
-}
+require("test").run(exports, true);
