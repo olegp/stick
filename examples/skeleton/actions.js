@@ -1,10 +1,12 @@
-var {Application} = require("stick");
+var Application = require("stick").Application;
 
-export("app");
+function resolve(n) {
+	return module.resolve ? module.resolve(n) : require.resolve(n.charAt(0) != '.' ? './' + n : n)
+}
 
-var app = Application();
+var app = exports.app = Application();
 app.configure("params", "route", "render");
-app.render.base = module.resolve("templates");
+app.render.base = resolve("templates");
 app.render.master = "page.html";
 
 
