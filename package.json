@@ -4,5 +4,8 @@
     "description": "JSGI based webapp framework",
     "keywords": ["commonjs", "jsgi"],
     "author": "Hannes Wallnöfer (http://hns.github.com/) <hannes@helma.at>",
-    "main": "./lib/stick.js"
+    "main": "./lib/stick.js",
+    "dependencies": {
+  		"common-utils": ">= 0.0.1"
+  	},
 }
