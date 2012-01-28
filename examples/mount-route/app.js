@@ -3,13 +3,9 @@ var Application = stick.Application, helpers = stick.helpers;
 
 var response = require("stick/lib/utils/response");
 
-function resolve(n) {
-	return module.resolve ? module.resolve(n) : require.resolve(n.charAt(0) != '.' ? './' + n : n)
-}
-
 var app = exports.app = Application(),
-    foo = resolve("foo"),
-    bar = resolve("bar");
+    foo = resolve(module, "foo"),
+    bar = resolve(module, "bar");
 
 app.configure("mount", "route");
 app.mount("/foo", foo);

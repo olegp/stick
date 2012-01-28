@@ -7,10 +7,6 @@ var Application = require("stick").Application,
 
 var fs = require(global.process ? 'fs-base' : 'fs');
 
-function resolve(n) {
-	return module.resolve ? module.resolve(n) : require.resolve(n.charAt(0) != '.' ? './' + n : n)
-}
-
 /*
  Example Stick application. This is a partial scheme of what the app looks like:
 
@@ -35,10 +31,11 @@ app.mount("/hello", dummyPage("hello world!"));
 app.mount("/error", function(req) {
     throw new Error("Something went wrong");
 });
-//app.static(fs.directory(resolve("../docs/index.html")), "index.html"); // serve files in docs as static resources
+
+app.static(resolve(module, "../docs"), "index.html"); // serve files in docs as static resources
 
 // mount example apps
-app.mount("/mount", resolve("mount-route/app"));
+app.mount("/mount", resolve(module, "mount-route/app"));
 //app.mount("/continuation", resolve("continuation/app"));
 
 // production environment, run with RINGO_ENV=production ringo demo.js

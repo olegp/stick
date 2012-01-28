@@ -2,13 +2,9 @@ var stick = require("stick");
 var Application = stick.Application, helpers = stick.helpers;
 var response = require("stick/lib/utils/response");
 
-function resolve(n) {
-	return module.resolve ? module.resolve(n) : require.resolve(n.charAt(0) != '.' ? './' + n : n)
-}
-
 var app = exports.app = Application(),
-    bar = resolve("bar"),
-    home = resolve("app");
+    bar = resolve(module, "bar"),
+    home = resolve(module, "app");
 
 app.configure("route");
 
