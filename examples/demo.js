@@ -1,10 +1,15 @@
 // Stick demo app. Run with `ringo -m .. examples/demo.js` with the -m option
 // pointing to the Stick parent directory.
 
-var {Application} = require("stick"),
-    {Server} = require("ringo/httpserver"),
-    {Buffer} = require("ringo/buffer"),
-    log = require("ringo/logging").getLogger("demo");
+var Application = require("../lib/stick").Application,
+    Buffer = require("common-utils/buffer").Buffer,
+    log = console.log;
+
+var fs = require(global.process ? 'fs-base' : 'fs');
+
+function resolve(n) {
+	return module.resolve ? module.resolve(n) : require.resolve(n.charAt(0) != '.' ? './' + n : n)
+}
 
 /*
  Example Stick application. This is a partial scheme of what the app looks like:
@@ -30,11 +35,11 @@ app.mount("/hello", dummyPage("hello world!"));
 app.mount("/error", function(req) {
     throw new Error("Something went wrong");
 });
-app.static(module.resolve("../docs"), "index.html"); // serve files in docs as static resources
+app.static(fs.directory(resolve("../docs/index.html")), "index.html"); // serve files in docs as static resources
 
 // mount example apps
-app.mount("/mount", module.resolve("mount-route/app"));
-app.mount("/continuation", module.resolve("continuation/app"));
+app.mount("/mount", resolve("mount-route/app"));
+app.mount("/continuation", resolve("continuation/app"));
 
 // production environment, run with RINGO_ENV=production ringo demo.js
 var prod = app.env("production");
@@ -66,8 +71,6 @@ function dummyPage(text) {
     }
 }
 
-// start server if run as main script
-if (require.main === module) {
-    require("ringo/httpserver").main(module.id);
-}
+require("jsgi").run(module.id);
+
 
