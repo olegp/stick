@@ -23,7 +23,7 @@ Currently Stick comes with the following middleware modules:
  * notfound     - generating 404 pages
  * params       - form data parsing
  * <del>profiler     - JavaScript profiling</del>
- * render       - mustache.js templates
+ * render       - mustache.js templates (mustache shold be installed separately with `npm install mustache`)
  * requestlog   - collecting per-request log messages
  * route        - Sinatra-like request routing
  * session      - session support
