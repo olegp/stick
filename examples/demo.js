@@ -48,8 +48,8 @@ var dev = app.env("development").configure("requestlog", "error");
 dev.requestlog.append = true;
 
 // profiler environment, run with RINGO_ENV=profiler ringo -o-1 demo.js
-var prof = app.env("profiler").configure(/*"requestlog", "profiler",*/ "error");
-//prof.requestlog.append = true;
+var prof = app.env("profiler").configure("requestlog", /*"profiler",*/ "error");
+prof.requestlog.append = true;
 
 // create a password protected admin application
 var admin = new Application(dummyPage("admin zone"));
@@ -68,6 +68,7 @@ function dummyPage(text) {
     }
 }
 
-require("jsgi").run(module.id, 9090);
-
-
+//start server if run as main script
+if (require.main === module) {
+    require("ringo/httpserver").main(module.id);
+}
