@@ -1,4 +1,4 @@
-This is a basic Stick application. To run it launch ringo with the main script:
+This is a basic Stick application. To run it launch common-node with the main script:
 
     common-node main.js
 
