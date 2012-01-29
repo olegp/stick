@@ -1,7 +1,8 @@
 # Stick
 
-Stick is a modular JSGI middleware composition layer and application framework
-based on [RingoJS](http://ringojs.org/).
+Stick is a modular JSGI middleware composition layer and application framework.
+
+It was originally made for [RingoJS](http://ringojs.org/), but this fork allows it to also run on [Common Node](http://olegp.github.com/common-node/).
 
 ## Overview
 
@@ -13,15 +14,15 @@ configurable to the outside world.
 Currently Stick comes with the following middleware modules:
 
  * basicauth    - basic HTTP authentication
- * continuation - generator-based async requests
+ * <del>continuation - generator-based async requests</del>
  * error        - generating error pages
  * etag         - ETag based conditional GET
- * gzip         - GZip content encoding
+ * <del>gzip         - GZip content encoding</del>
  * method       - HTTP method overriding
  * mount        - mounting other applications
  * notfound     - generating 404 pages
  * params       - form data parsing
- * profiler     - JavaScript profiling
+ * <del>profiler     - JavaScript profiling</del>
  * render       - mustache.js templates
  * requestlog   - collecting per-request log messages
  * route        - Sinatra-like request routing
@@ -33,17 +34,15 @@ Currently Stick comes with the following middleware modules:
 
 ## Running
 
-Use the `ringo-admin` command to to install Stick:
+Use `npm` to to install Stick:
 
-    $ ringo-admin install hns/stick
+    $ npm install stick
 
-Alternatively, you can manually copy or symlink the stick directory into
-the `packages` directory of your ringojs installation.
 
-To start the stick demo application run the `ringo` command with the 
+To start the stick demo application run the `common-node` ([Common Node](http://olegp.github.com/common-node/) is installed via `npm install common-node -g`) command with the 
 `demo.js` script in the stick directory:
 
-    $ ringo examples/demo.js
+    $ common-node examples/demo.js
 
 Then point your browser to <http://localhost:8080/>.
 
