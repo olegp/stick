@@ -2,7 +2,7 @@
 
 Stick is a modular JSGI middleware composition layer and application framework.
 
-It was originally made for [RingoJS](http://ringojs.org/), but this fork allows it to also run on [Common Node](http://olegp.github.com/common-node/).
+It was originally made for [RingoJS](http://ringojs.org/), but this fork allows it to also run on [Common Node](http://olegp.github.com/common-node/) (a synchronous CommonJS compatibility layer for Node.js using node-fibers).
 
 ## Overview
 
