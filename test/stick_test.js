@@ -58,12 +58,12 @@ exports.testMount = function() {
     app.mount({host:"bar.org", path:"/baz"}, function() {
       return "bar.org/baz";
     });
-    assert.equal(app({headers:{host:"bar.com"}, env:{}, pathInfo:"/foo"}), "/foo");
-    assert.equal(app({headers:{host:"foo.com"}, env:{}, pathInfo:"/foo"}), "/foo");
-    assert.equal(app({headers:{host:"foo.com"}, env:{}, pathInfo:"/"}), "foo.com");
-    assert.equal(app({headers:{host:"bar.org"}, env:{}, pathInfo:"/baz"}), "bar.org/baz");
+    assert.equal(app({headers:{host:['bar.com']}, env:{}, pathInfo:"/foo"}), "/foo");
+    assert.equal(app({headers:{host:['foo.com']}, env:{}, pathInfo:"/foo"}), "/foo");
+    assert.equal(app({headers:{host:['foo.com']}, env:{}, pathInfo:"/"}), "foo.com");
+    assert.equal(app({headers:{host:['bar.org']}, env:{}, pathInfo:"/baz"}), "bar.org/baz");
     assert.throws(function() {
-      app({headers:{host:"bing.org"}, env:{}, pathInfo:"/"});
+      app({headers:{host:['bing.org']}, env:{}, pathInfo:"/"});
     }, Error);
   }
   var app = new Application();
@@ -89,15 +89,10 @@ exports.testMountSort = function() {
     return "foo/bar";
   });
 
-  assert.equal(app({headers:{host:"foo.com"}, env:{}, pathInfo:"/"}), "root");
-  assert.equal(app({headers:{host:"foo.com"}, env:{}, pathInfo:"/foo"}), "foo");
-  assert.equal(app({headers:{host:"foo.com"}, env:{}, pathInfo:"/foo/bar"}), "foo/bar");
-
-  try {
-    var response = app({headers:{host:"foo.com"}, env:{}, pathInfo:"/bars"});
-    assert.fail('Expecting unhandled request');
-  } catch (e) {
-  }
+  assert.equal(app({headers:{host:['foo.com']}, env:{}, pathInfo:"/"}), "root");
+  assert.equal(app({headers:{host:['foo.com']}, env:{}, pathInfo:"/foo"}), "foo");
+  assert.equal(app({headers:{host:['foo.com']}, env:{}, pathInfo:"/foo/bar"}), "foo/bar");
+  assert.equal(app({headers:{host:['foo.com']}, env:{}, pathInfo:"/bars"}), "root");
 };
 
 /**
@@ -106,7 +101,7 @@ exports.testMountSort = function() {
  */
 exports.testRouteResolution = function() {
   function testPath(path, expected) {
-    assert.equal(app({method:'GET', headers:{host:"foo.com"}, env:{}, pathInfo:path}), expected);
+    assert.equal(app({method:'GET', headers:{host:['foo.com']}, env:{}, pathInfo:path}), expected);
   }
 
   var app = new Application();
@@ -145,7 +140,7 @@ exports.testRouteResolution = function() {
  */
 exports.testMountAndRouteResolution = function() {
   function testPath(path, expected) {
-    assert.equal(mountApp({method:'GET', headers:{host:"foo.com"}, env:{}, pathInfo:path}), expected);
+    assert.equal(mountApp({method:'GET', headers:{host:['foo.com']}, env:{}, pathInfo:path}), expected);
   }
 
   var app = new Application();
