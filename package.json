@@ -1,17 +1,21 @@
 {
-    "name": "stick",
-    "version": "0.1.3",
-    "description": "JSGI based webapp framework",
-    "keywords": ["commonjs", "jsgi"],
-    "author": "Hannes Wallnöfer (http://hns.github.com/) <hannes@helma.at>",
-    "contributors": [ 
+  "name":"stick",
+  "version":"0.1.4",
+  "description":"JSGI based webapp framework",
+  "keywords":["commonjs", "jsgi"],
+  "author":"Hannes Wallnöfer (http://hns.github.com/) <hannes@helma.at>",
+  "contributors":[
     {
-      "name": "Oleg Podsechin",
-      "email": "oleg@ionsquare.com"
-    } 
-    ],
-    "main": "./lib/stick.js",
-    "dependencies": {
-  		"common-utils": ">= 0.0.1"
-  	}
+      "name":"Alex Lam",
+      "email":"alex.lam@starthq.com"
+    },
+    {
+      "name":"Oleg Podsechin",
+      "email":"oleg@ionsquare.com"
+    }
+  ],
+  "main":"./lib/stick.js",
+  "dependencies":{
+    "common-utils":">= 0.0.1"
+  }
 }
