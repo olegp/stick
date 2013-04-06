@@ -1,3 +1,5 @@
+var ByteString = require("binary").ByteString;
+var MemoryStream = require("io").MemoryStream;
 var stick = require("../lib/stick");
 var Application = stick.Application;
 var middleware = require("../lib/middleware");
@@ -132,6 +134,27 @@ exports.testRouteResolution = function() {
   testPath("/bar/abc", "bar/[abc]");
   testPath("/baz/abc/qux", "baz/[abc]/qux");
   testPath("/baz/123/qux", "baz/123/qux");
+};
+
+exports.testPost = function() {
+  function testPost(path, expected) {
+    assert.equal(app({
+      method:'POST',
+      headers:{host:['foo.com']},
+      env:{},
+      pathInfo:path,
+      input:new MemoryStream(new ByteString('+P340irvc?dsfdsf+"210oi4-'))
+    }), expected);
+  }
+
+  var app = new Application();
+  app.configure(route);
+
+  app.post("/foo", function(request) {
+    return "foo";
+  });
+
+  testPost("/foo", "foo");
 };
 
 /**
