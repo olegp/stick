@@ -1,6 +1,6 @@
 {
   "name":"stick",
-  "version":"0.2.8",
+  "version":"0.2.9",
   "description":"JSGI based webapp framework",
   "keywords":["commonjs", "jsgi"],
   "author":"Hannes Wallnöfer (http://hns.github.com/) <hannes@helma.at>",
