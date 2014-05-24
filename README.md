@@ -19,7 +19,7 @@ Currently Stick comes with the following middleware modules:
  * <del>continuation - generator-based async requests</del>
  * error        - generating error pages
  * etag         - ETag based conditional GET
- * <del>gzip         - GZip content encoding</del>
+ * gzip         - GZip content encoding
  * method       - HTTP method overriding
  * mount        - mounting other applications
  * notfound     - generating 404 pages
@@ -41,7 +41,7 @@ Use `npm` to to install Stick:
     $ npm install stick
 
 
-To start the stick demo application run the `common-node` ([Common Node](http://olegp.github.com/common-node/) is installed via `npm install common-node -g`) command with the 
+To start the stick demo application run the `common-node` ([Common Node](http://olegp.github.com/common-node/) is installed via `npm install common-node -g`) command with the
 `demo.js` script in the stick directory:
 
     $ common-node examples/demo.js
